@@ -35,7 +35,7 @@ func GetTask(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	res, err := json.Marshal(*searchedTask)
+	res, err := json.Marshal(searchedTask)
 	if err != nil {
 		log.Printf("Could not marshal tasks to json:\n%v\n", err)
 		return
@@ -49,6 +49,7 @@ func GetTask(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 }
+
 func CreateTask(w http.ResponseWriter, r *http.Request) {
 
 }
