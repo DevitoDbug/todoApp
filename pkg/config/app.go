@@ -17,6 +17,6 @@ func ConnectToDB() {
 	db = d
 }
 
-func getDBConnection() *gorm.DB {
+func GetDBConnection() *gorm.DB {
 	return db
 }
