@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/DevitoDbug/todoApp/pkg/routes"
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
@@ -11,6 +12,7 @@ func main() {
 
 	r := mux.NewRouter()
 
+	routes.TaskRoutes(r)
 	http.Handle("/", r)
 
 	log.Printf("Starting server at port%v \n", port)
