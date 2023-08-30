@@ -11,7 +11,7 @@ import (
 func GetAllTasks(w http.ResponseWriter, r *http.Request) {
 	tasks := models.GetAllTasks()
 
-	res, err := json.Marshal(*tasks)
+	res, err := json.Marshal(tasks)
 	if err != nil {
 		log.Printf("Could not marshal tasks to json:\n%v\n", err)
 		return
@@ -51,11 +51,45 @@ func GetTask(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateTask(w http.ResponseWriter, r *http.Request) {
+	var newTask = &models.Task{}
+	utils.ParseBody(r, newTask)
+	createdTask := newTask.CreateTask()
+
+	res, err := json.Marshal(createdTask)
+	if err != nil {
+		log.Printf("Could not marshal tasks to json:\n%v\n", err)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	_, err = w.Write(res)
+	if err != nil {
+		log.Printf("Writting to header error:\n%v\n", err)
+		return
+	}
 
 }
+
 func DeleteTask(w http.ResponseWriter, r *http.Request) {
+	ID := utils.IDFromRouteVariable(r)
+	deletedTask := models.DeleteTask(ID)
 
+	res, err := json.Marshal(deletedTask)
+	if err != nil {
+		log.Printf("Could not marshal tasks to json:\n%v\n", err)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	_, err = w.Write(res)
+	if err != nil {
+		log.Printf("Writting to header error:\n%v\n", err)
+		return
+	}
 }
+
 func UpdateTask(w http.ResponseWriter, r *http.Request) {
 
 }
