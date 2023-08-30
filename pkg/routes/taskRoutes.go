@@ -6,9 +6,9 @@ import (
 )
 
 var TaskRoutes = func(r mux.Router) {
-	r.HandleFunc("/task/", controllers.GetAllTasks)
-	r.HandleFunc("/task/", controllers.GetTask)
-	r.HandleFunc("/task/", controllers.CreateTask)
-	r.HandleFunc("/task/", controllers.DeleteTask)
-	r.HandleFunc("/task/", controllers.UpdateTask)
+	r.HandleFunc("/task/", controllers.GetAllTasks).Methods("GET")
+	r.HandleFunc("/task/{id}", controllers.GetTask).Methods("GET")
+	r.HandleFunc("/task/", controllers.CreateTask).Methods("POST")
+	r.HandleFunc("/task/{id}", controllers.DeleteTask).Methods("DELETE")
+	r.HandleFunc("/task/{id}", controllers.UpdateTask).Methods("PUT")
 }

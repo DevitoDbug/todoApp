@@ -3,6 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"github.com/DevitoDbug/todoApp/pkg/models"
+	"github.com/gorilla/mux"
 	"log"
 	"net/http"
 )
@@ -24,8 +25,9 @@ func GetAllTasks(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 }
-func GetTask(w http.ResponseWriter, r *http.Request) {
 
+func GetTask(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
 }
 func CreateTask(w http.ResponseWriter, r *http.Request) {
 
